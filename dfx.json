@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "carbon_credit_backend": {
+      "main": "src/carbon_credit_backend/main.mo",
+      "type": "motoko"
+    },
+    "carbon_credit_frontend": {
+      "dependencies": [
+        "carbon_credit_backend"
+      ],
+      "source": [
+        "src/carbon_credit_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "carbon_credit_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
