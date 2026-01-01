@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MyWebsite</title>
+    <!-- You will need to link your own style.css file -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+        /* Basic Styling for demonstration */
+        body { font-family: sans-serif; margin: 0; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 1rem 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 1.5rem; text-decoration: none; color: #333; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: #555; font-weight: 500; }
+        main { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); }
+        .form-container { width: 100%; max-width: 450px; }
+        .form-card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; margin-top: 0; }
+        .form-subtitle { text-align: center; color: #777; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .btn-form { width: 100%; padding: 0.8rem; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+        .form-footer { text-align: center; margin-top: 1.5rem; }
+        .footer-fixed { text-align: center; padding: 1rem; background: #f8f9fa; }
+        #message { text-align: center; margin-bottom: 1rem; font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">MyWebsite</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="signin.html">Log In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <div class="form-card">
+                <h2>Carbon MRV Platform</h2>
+                <p class="form-subtitle">Sign in to access your dashboard</p>
+                <div id="message"></div>
+                <form id="signin-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="user@example.gov" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Select Role</label>
+                        <select id="role" name="role">
+                            <option value="government">Government</option>
+                            <option value="industry">Industry</option>
+                            <option value="ngo-community">NGO/Community</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-form">Sign In</button>
+                </form>
+                <p class="form-footer">Don't have an account? <a href="signup.html">Sign up here</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer-fixed">
+        <div class="container">
+            <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('signin-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const messageDiv = document.getElementById('message');
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            messageDiv.textContent = '';
+            messageDiv.className = '';
+
+            try {
+                const response = await fetch('http://localhost:5000/signin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = 'Success! Redirecting to dashboard...';
+                    messageDiv.classList.add('success');
+                    
+                    // --- THIS IS THE UPDATED LOGIC ---
+                    // 1. Save the user data returned from the server into session storage
+                    sessionStorage.setItem('user', JSON.stringify(result.user));
+
+                    // 2. Redirect to the dashboard page after a short delay
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500); // 1.5 second delay
+
+                } else {
+                    messageDiv.textContent = result.message;
+                    messageDiv.classList.add('error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                messageDiv.textContent = 'An error occurred. Please try again.';
+                messageDiv.classList.add('error');
+            }
+        });
+    </script>
+
+</body>
+</html>
+
