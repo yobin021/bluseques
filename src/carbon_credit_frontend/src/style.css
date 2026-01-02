@@ -1,240 +1,163 @@
-/* --- General Body & Reset Styles --- */
-* {
+body {
+    margin: 0;
+    font-size: 5em;
+    /* background-image: url(../img/bg.jpg); File missing */
+}
+
+.banner {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/valentin-petrov-m-mal-01.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: bgZoomIn 4s ease-in-out 1 forwards;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/after.png');
+    background-size: cover;
+    background-position: top;
+    transform: scale(2);
+    animation: bgZoomOut 4s ease-in-out 1 forwards;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes bgZoomIn {
+    from {
+        transform: scale(1.2);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes bgZoomOut {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(2);
+    }
+}
+
+svg path {
+    fill: transparent;
+    stroke: #fff;
+    stroke-width: 0.1;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: textAnimation 4s ease-in-out 1 forwards;
+}
+
+@keyframes textAnimation {
+    0% {
+        stroke-dashoffset: 50;
+    }
+
+    80% {
+        fill: transparent;
+    }
+
+    100% {
+        fill: #fff;
+        stroke-dashoffset: 0;
+    }
+}
+/* 1. Reset & Main Background Setup */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* This ensures your background image covers the whole screen including behind the nav */
+    background: url('your-image-path.jpg') no-repeat center center/cover;
+    height: 100vh; 
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 20px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-main {
-    flex-grow: 1;
-}
-
-/* --- Header & Navigation Bar --- */
+/* 2. Header Container - Transparent & Overlay */
 header {
-    background: #fff;
-    color: #333;
-    padding: 1rem 0;
-    position: sticky;
+    background-color: transparent; /* No white bar */
+    position: absolute; /* Floats the header on top of the image */
+    width: 100%;
     top: 0;
+    left: 0;
+    padding-top: 20px; /* Adds some spacing from the very top */
     z-index: 1000;
-    border-bottom: 1px solid #e9ecef;
 }
 
-nav {
+/* 3. The Flexbox Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* Slightly wider padding for a spacious look */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 60px;
 }
 
+/* 4. Logo Styling */
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #333;
+    font-size: 1.2rem; /* Slightly smaller, more elegant */
+    font-weight: 600;
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Wider spacing for a premium feel */
+    opacity: 0.9;
 }
 
+/* 5. Navigation List Styling */
 nav ul {
+    list-style: none;
     display: flex;
     align-items: center;
+    gap: 40px; /* More space between items */
 }
 
-nav ul li {
-    margin-left: 20px;
-}
-
+/* 6. General Link Styling */
 nav ul li a {
-    padding: 0.5rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7); /* Soft white */
+    font-weight: 400;
+    font-size: 0.95rem;
     transition: color 0.3s ease;
-    font-weight: 500;
 }
 
 nav ul li a:hover {
-    color: #007bff;
+    color: #ffffff; /* Pure white on hover */
 }
 
-/* Special style for the "Sign Up" button */
-.btn-signup {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+/* 7. 'Sign Up' Button (Ghost Style) */
+nav ul li:last-child a {
+    background-color: transparent; /* REMOVED the green color */
+    color: #ffffff;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Subtle white border */
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
-.btn-signup:hover {
-    background-color: #0056b3;
-    color: #fff; /* Ensure text color remains white on hover */
-    transform: translateY(-2px);
+nav ul li:last-child a:hover {
+    border-color: #ffffff; /* Border becomes bright white */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight glass effect on hover */
 }
 
-
-/* --- Main Content Area (Hero Section) --- */
-.hero {
-    background: #fff;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #6c757d;
-}
-
-.cta-button {
-    display: inline-block;
-    background: #343a40;
-    color: #fff;
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: 500;
-}
-
-.cta-button:hover {
-    background: #23272b;
-    transform: translateY(-2px);
-}
-
-/* --- Form Styles (for Sign In & Sign Up) --- */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    flex-grow: 1;
-}
-
-.form-card {
-    background: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-}
-
-.form-card h2 {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.form-subtitle {
-    margin-bottom: 30px;
-    color: #6c757d;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    font-size: 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-.btn-form {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-form:hover {
-    background: #0056b3;
-}
-
-.form-footer {
-    margin-top: 25px;
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-.form-footer a {
-    color: #007bff;
-    font-weight: 600;
-}
-
-.form-footer a:hover {
-    text-decoration: underline;
-}
-
-
-/* --- Footer --- */
-footer {
-    background: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 1.5rem 0;
-}
-
-.footer-fixed {
-    background: #f8f9fa;
-    color: #6c757d;
-    text-align: center;
-    padding: 1.5rem 0;
-    border-top: 1px solid #e9ecef;
-}
