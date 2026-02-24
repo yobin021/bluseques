@@ -1,0 +1,21 @@
+
+> carbon_credit_frontend@0.0.0 start
+> vite --port 3000
+
+
+  VITE v7.3.0  ready in 153 ms
+
+  ➜  Local:   http://localhost:3000/bluseques/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+4:04:26 PM [vite] (client) page reload index.html
+4:04:29 PM [vite] (client) page reload index.html
+4:04:31 PM [vite] (client) page reload index.html
+Killed
+npm error Lifecycle script `start` failed with error:
+npm error code 137
+npm error path /home/yobin/carbon_credit/src/carbon_credit_frontend
+npm error workspace carbon_credit_frontend@0.0.0
+npm error location /home/yobin/carbon_credit/src/carbon_credit_frontend
+npm error command failed
+npm error command sh -c vite --port 3000
