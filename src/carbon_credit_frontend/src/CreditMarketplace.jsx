@@ -8,7 +8,7 @@ const mockSellers = [
         name: 'EcoTech Industries',
         origin: 'Plant A (Industrial)',
         creditsAvailable: 1500,
-        pricePerTonne: 15.50,
+        pricePerTonne: 750,
         verifiedBy: 'IoT + MRV Verified',
         type: 'industrial'
     },
@@ -17,7 +17,7 @@ const mockSellers = [
         name: 'GreenOcean Restorations',
         origin: 'Project BC-001 (Blue Carbon)',
         creditsAvailable: 500,
-        pricePerTonne: 22.00,
+        pricePerTonne: 720,
         verifiedBy: 'Satellite + MRV Verified',
         type: 'bluecarbon'
     },
@@ -26,7 +26,7 @@ const mockSellers = [
         name: 'Sylva Carbon',
         origin: 'Project SC-04 (Reforestation)',
         creditsAvailable: 3500,
-        pricePerTonne: 18.25,
+        pricePerTonne: 780,
         verifiedBy: 'Satellite + Drone Verified',
         type: 'forestry'
     },
@@ -35,7 +35,7 @@ const mockSellers = [
         name: 'DirectAir Corp',
         origin: 'DAC Facility Beta',
         creditsAvailable: 200,
-        pricePerTonne: 85.00,
+        pricePerTonne: 800,
         verifiedBy: 'IoT + 3rd Party Audited',
         type: 'dac'
     },
@@ -44,7 +44,7 @@ const mockSellers = [
         name: 'AgriGreen Farms',
         origin: 'Soil C-Sequestration Co-op',
         creditsAvailable: 800,
-        pricePerTonne: 12.00,
+        pricePerTonne: 700,
         verifiedBy: 'Soil Sampling + MRV',
         type: 'agriculture'
     }
@@ -97,7 +97,7 @@ const CreditMarketplace = () => {
                 <div className="bg-white p-6 rounded-xl shadow-md">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold text-slate-800">
-                            Available Suppliers {requestedCredits > 0 && `(for ${requestedCredits}t CO₂)`}
+                            Available Suppliers {requestedCredits > 0 && `(for ${requestedCredits}t CO₂ Credit)`}
                         </h3>
                         <span className="text-sm rounded-full bg-green-100 text-green-700 font-bold px-3 py-1">
                             {displaySellers.length} found
@@ -125,7 +125,7 @@ const CreditMarketplace = () => {
                                             {seller.origin}
                                         </p>
                                         <div className="flex items-end justify-between mb-4">
-                                            <p className="text-3xl font-extrabold text-green-600">${seller.pricePerTonne.toFixed(2)}<span className="text-sm font-medium text-slate-400"> / t</span></p>
+                                            <p className="text-3xl font-extrabold text-green-600">₹{seller.pricePerTonne.toFixed(2)}<span className="text-sm font-medium text-slate-400"> / t</span></p>
                                         </div>
                                         <div className="flex items-center text-xs text-blue-600 font-semibold mb-4 bg-blue-50 p-2 rounded w-fit">
                                             <ShieldCheck className="w-4 h-4 mr-1 flex-shrink-0" /> {seller.verifiedBy}

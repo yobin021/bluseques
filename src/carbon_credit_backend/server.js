@@ -46,8 +46,8 @@ testDbConnection();
 
 // --- API Endpoints ---
 
-// --- In-Memory Mock Database (Fallback) ---
-const mockUsers = [];
+// --- API Endpoints ---
+
 
 // 1. Sign-up Endpoint
 app.post('/signup', async (req, res) => {
@@ -58,26 +58,15 @@ app.post('/signup', async (req, res) => {
             return res.status(400).json({ message: 'Please provide all required fields.' });
         }
 
-        // Try Real DB first
-        try {
-            const userCheck = await pool.query('SELECT * FROM companies WHERE email = $1', [email]);
-            if (userCheck.rows.length > 0) {
-                return res.status(409).json({ message: 'User with this email already exists.' });
-            }
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
-            await pool.query('INSERT INTO companies (fullname, email, password, role) VALUES ($1, $2, $3, $4)', [fullname, email, hashedPassword, role]);
-            return res.status(201).json({ message: 'User created successfully! (DB)' });
-        } catch (dbErr) {
-            console.warn('Real DB failed, using Mock DB for demo:', dbErr.message);
-            // Fallback to Mock DB
-            if (mockUsers.find(u => u.email === email)) {
-                return res.status(409).json({ message: 'User with this email already exists.' });
-            }
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
-            const newUser = { id: Date.now(), fullname, email, password: hashedPassword, role };
-            mockUsers.push(newUser);
-            return res.status(201).json({ message: 'User created successfully! (Mock Mode)' });
+        const userCheck = await pool.query('SELECT * FROM companies WHERE email = $1', [email]);
+        if (userCheck.rows.length > 0) {
+            return res.status(409).json({ message: 'User with this email already exists.' });
         }
+
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        await pool.query('INSERT INTO companies (fullname, email, password, role) VALUES ($1, $2, $3, $4)', [fullname, email, hashedPassword, role]);
+
+        return res.status(201).json({ message: 'User created successfully!' });
 
     } catch (error) {
         console.error('Error during signup:', error);
@@ -94,20 +83,11 @@ app.post('/signin', async (req, res) => {
             return res.status(400).json({ message: 'Please provide all required fields.' });
         }
 
-        let user;
-
-        // Try Real DB first
-        try {
-            const result = await pool.query('SELECT * FROM companies WHERE email = $1', [email]);
-            user = result.rows[0];
-        } catch (dbErr) {
-            console.warn('Real DB failed, using Mock DB for demo:', dbErr.message);
-            // Fallback to Mock DB
-            user = mockUsers.find(u => u.email === email);
-        }
+        const result = await pool.query('SELECT * FROM companies WHERE email = $1', [email]);
+        const user = result.rows[0];
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found. (If using Mock Mode, did you Sign Up first?)' });
+            return res.status(404).json({ message: 'User not found.' });
         }
 
         const isPasswordMatch = await bcrypt.compare(password, user.password);

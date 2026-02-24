@@ -11,7 +11,7 @@ import {
 
 import Overview from './Overview.jsx';
 import IndustrialCapture from './IndustrialCapture.jsx';
-// import BlueCarbon from './BlueCarbon.jsx';
+import BlueCarbon from './BlueCarbon.jsx';
 import CreditMarketplace from './CreditMarketplace.jsx';
 import Report from './Report.jsx';
 import Admin from './Admin.jsx';
@@ -92,7 +92,7 @@ const Dashboard = () => {
         <nav className="flex-grow flex flex-col space-y-2">
           <NavLink id="overview" icon={LayoutDashboard} label="Overview" />
           <NavLink id="industrial" icon={Factory} label="Industrial Capture" />
-          {/* <NavLink id="bluecarbon" icon={Leaf} label="Blue Carbon" /> */}
+          <NavLink id="bluecarbon" icon={Leaf} label="Blue Carbon" />
           <NavLink id="marketplace" icon={ShoppingCart} label="Credits Marketplace" />
           <NavLink id="reports" icon={FileBarChart2} label="Reports" />
           <NavLink id="admin" icon={Shield} label="Admin" />
