@@ -1,3 +1,28 @@
+type Transaction = 
+ record {
+   amount: nat;
+   buyer: principal;
+   pricePerCredit: nat;
+   seller: principal;
+   timestamp: int;
+   txId: nat;
+ };
+type Listing = 
+ record {
+   amount: nat;
+   createdAt: int;
+   id: nat;
+   pricePerCredit: nat;
+   seller: principal;
+ };
 service : {
-  greet: (name: text) -> (text) query;
+  balanceOf: (user: principal) -> (nat) query;
+  buyCredits: (listingId: nat) -> (bool);
+  cancelListing: (listingId: nat) -> (bool);
+  getActiveListings: () -> (vec Listing) query;
+  getCaller: () -> (principal);
+  getTransactionHistory: () -> (vec Transaction) query;
+  listForSale: (amount: nat, pricePerCredit: nat) -> (opt nat);
+  mint: (amount: nat) -> ();
+  transfer: (to: principal, amount: nat) -> (bool);
 }

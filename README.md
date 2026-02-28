@@ -33,38 +33,28 @@ The Carbon Credit Marketplace serves as a bridge for industries to trade their c
 
 ### Local Development Setup
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repository-url>
-   cd carbon_credit
-   ```
+To run the complete project locally, you need to start three different parts of the system. We recommend opening **three separate terminal windows/tabs** inside your `carbon_credit` folder:
 
-2. **Start the local ICP replica:**
-   Run the local replica in the background:
+1. **Start the Blockchain (Internet Computer)**
+   In your **first terminal**, start the local blockchain network and deploy your smart contracts:
    ```bash
    dfx start --background
-   ```
-
-3. **Deploy ICP Canisters:**
-   Deploy the smart contracts (canisters) to the local replica. You can use the setup script to install dependencies and deploy the backend:
-   ```bash
-   npm run setup
-   ```
-   Or deploy manually:
-   ```bash
    dfx deploy
    ```
 
-4. **Start the Frontend Development Server:**
-   ```bash
-   npm start
-   ```
-   This will start the Vite local development server proxying API requests to the ICP replica. The frontend will be available at `http://localhost:3000`.
-
-5. **Start the Backend Server:**
+2. **Start the Database/Backend API**
+   In your **second terminal**, start the Express.js and PostgreSQL backend server:
    ```bash
    node src/carbon_credit_backend/server.js
    ```
+   *(This should output `Server is running on http://localhost:5000` and confirm your DB connection)*
+
+3. **Start the Frontend Website**
+   In your **third terminal**, start the Vite/React development server:
+   ```bash
+   npm start
+   ```
+   *(This will start the frontend, usually accessible at `http://localhost:3000`)*
 
 ## 📚 Documentation
 To learn more about the underlying technologies used in this project:
