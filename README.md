@@ -1,6 +1,6 @@
 # Carbon Credit Marketplace
 
-Welcome to the **Carbon Credit Marketplace**, a secure, transparent, and decentralized platform built on the Internet Computer (ICP) blockchain. This platform revolutionizes how industries trade carbon credits while empowering government bodies with real-time monitoring and oversight capabilities.
+Welcome to the **Carbon Credit Marketplace**, a secure, transparent, and decentralized platform built on the Internet Computer (ICP) blockchain. This platform revolutionizes the trading of carbon credits while empowering government bodies with real-time monitoring and oversight capabilities. Furthermore, the platform equips industries with comprehensive tracking tools to monitor their carbon emissions, manage their existing carbon credit portfolios, and precisely track their blue carbon levels.
 
 ## 🌟 Overview
 
