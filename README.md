@@ -2,14 +2,14 @@
 
 Welcome to the **Carbon Credit Marketplace**, a secure, transparent, and decentralized platform built on the Internet Computer (ICP) blockchain. This platform revolutionizes the trading of carbon credits while empowering government bodies with real-time monitoring and oversight capabilities. Furthermore, the platform equips industries with comprehensive tracking tools to monitor their carbon emissions, manage their existing carbon credit portfolios, and precisely track their blue carbon levels.
 
-## 🌟 Overview
+##  Overview
 
 The Carbon Credit Marketplace serves as a bridge for industries to trade their carbon credits securely. By leveraging the power of blockchain technology (Internet Computer Protocol - ICP), we ensure that every transaction is immutable, transparent, and highly secure. The platform also offers a dedicated dashboard specifically designed for government officials to oversee and monitor these trades, ensuring full compliance with environmental regulations.
 
-### 🎥 Prototype Demonstration
+###  Prototype Demonstration
 **Check out our working prototype:** [Google Drive - Prototype Demos & Screenshots](https://drive.google.com/drive/folders/1ZGEWoyUR1qZJQk5tQbguGVV5BKdlfSo4)
 
-## ✨ Key Features
+##  Key Features
 
 - **Decentralized Trading:** Industries can buy and sell carbon credits directly through an open marketplace without intermediaries.
 - **Government Dashboard:** A dedicated, secure dashboard for government officials to monitor marketplace transactions in real-time, ensuring transparency and regulatory oversight.
@@ -23,7 +23,7 @@ The Carbon Credit Marketplace serves as a bridge for industries to trade their c
 - **Backend:** Node.js, Express.js, PostgreSQL (via `pg`), bcrypt
 - **Blockchain Layer:** Internet Computer (ICP) - Motoko/Rust Canisters, DFINITY Agent
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v16.0.0 or higher)
@@ -56,7 +56,7 @@ To run the complete project locally, you need to start three different parts of 
    ```
    *(This will start the frontend, usually accessible at `http://localhost:3000`)*
 
-## 📚 Documentation
+##  Documentation
 To learn more about the underlying technologies used in this project:
 - [Internet Computer Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
 - [Vite Documentation](https://vitejs.dev/)
