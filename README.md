@@ -1,60 +1,79 @@
-# `carbon_credit`
+# Carbon Credit Marketplace
 
-Welcome to your new `carbon_credit` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Welcome to the **Carbon Credit Marketplace**, a secure, transparent, and decentralized platform built on the Internet Computer (ICP) blockchain. This platform revolutionizes how industries trade carbon credits while empowering government bodies with real-time monitoring and oversight capabilities.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## 🌟 Overview
 
-To learn more before you start working with `carbon_credit`, see the following documentation available online:
+The Carbon Credit Marketplace serves as a bridge for industries to trade their carbon credits securely. By leveraging the power of blockchain technology (Internet Computer Protocol - ICP), we ensure that every transaction is immutable, transparent, and highly secure. The platform also offers a dedicated dashboard specifically designed for government officials to oversee and monitor these trades, ensuring full compliance with environmental regulations.
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+### 🎥 Prototype Demonstration
+**Check out our working prototype:** [Google Drive - Prototype Demos & Screenshots](https://drive.google.com/drive/folders/1ZGEWoyUR1qZJQk5tQbguGVV5BKdlfSo4)
 
-If you want to start working on your project right away, you might want to try the following commands:
+## ✨ Key Features
 
-```bash
-cd carbon_credit/
-dfx help
-dfx canister --help
-```
+- **Decentralized Trading:** Industries can buy and sell carbon credits directly through an open marketplace without intermediaries.
+- **Government Dashboard:** A dedicated, secure dashboard for government officials to monitor marketplace transactions in real-time, ensuring transparency and regulatory oversight.
+- **Blockchain Security (ICP):** Built natively on the Internet Computer (ICP), ensuring that all transaction data is completely secure, tamper-proof, and highly scalable.
+- **Interactive UI:** A highly responsive and intuitive frontend built with React, Vite, Chart.js, and D3.js to visualize trading trends.
+- **Robust Backend APIs:** Powered by Node.js, Express, and PostgreSQL to handle robust user management, working alongside the trusted ICP smart contracts (canisters).
 
-## Running the project locally
+## 🛠️ Technology Stack
 
-If you want to test your project locally, you can use the following commands:
+- **Frontend:** React.js, Vite, TypeScript, Chart.js, D3.js, Lucide Icons
+- **Backend:** Node.js, Express.js, PostgreSQL (via `pg`), bcrypt
+- **Blockchain Layer:** Internet Computer (ICP) - Motoko/Rust Canisters, DFINITY Agent
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+## 🚀 Getting Started
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+### Prerequisites
+- Node.js (v16.0.0 or higher)
+- npm (v7.0.0 or higher)
+- [DFX SDK](https://internetcomputer.org/docs/current/developer-docs/setup/install) (for Internet Computer deployment)
+- PostgreSQL
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+### Local Development Setup
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repository-url>
+   cd carbon_credit
+   ```
 
-```bash
-npm run generate
-```
+2. **Start the local ICP replica:**
+   Run the local replica in the background:
+   ```bash
+   dfx start --background
+   ```
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+3. **Deploy ICP Canisters:**
+   Deploy the smart contracts (canisters) to the local replica. You can use the setup script to install dependencies and deploy the backend:
+   ```bash
+   npm run setup
+   ```
+   Or deploy manually:
+   ```bash
+   dfx deploy
+   ```
 
-If you are making frontend changes, you can start a development server with
+4. **Start the Frontend Development Server:**
+   ```bash
+   npm start
+   ```
+   This will start the Vite local development server proxying API requests to the ICP replica. The frontend will be available at `http://localhost:3000`.
 
-```bash
-npm start
-```
+5. **Start the Backend Server:**
+   ```bash
+   node src/carbon_credit_backend/server.js
+   ```
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+## 📚 Documentation
+To learn more about the underlying technologies used in this project:
+- [Internet Computer Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
+- [Vite Documentation](https://vitejs.dev/)
+- [React Documentation](https://reactjs.org/)
 
-### Note on frontend environment variables
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
-
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
-# bluseques
+## 📜 License
+This project is licensed under the MIT License.
