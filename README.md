@@ -62,8 +62,8 @@ To learn more about the underlying technologies used in this project:
 - [Vite Documentation](https://vitejs.dev/)
 - [React Documentation](https://reactjs.org/)
 
-## 🤝 Contributing
+##  Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
-## 📜 License
+##  License
 This project is licensed under the MIT License.
